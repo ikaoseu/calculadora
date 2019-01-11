@@ -13,9 +13,10 @@ import java.awt.Color;
  */
 public class VentanaCalculadora extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaCalculadora
-     */
+    double operando1 = 0;
+    String operacion = "";
+            
+            
     public VentanaCalculadora() {
         initComponents();
         
@@ -330,9 +331,19 @@ public class VentanaCalculadora extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void botonPulsado(String boton){
+    private void botonPulsado(String numeroPulsado){
        String numeroEnPantalla = pantalla.getText();
-       pantalla.setText(numeroEnPantalla + boton);
+       if(numeroEnPantalla == "0"){
+           pantalla.setText(numeroPulsado);
+       }else{
+           pantalla.setText(numeroEnPantalla + numeroPulsado);
+       }
+       
+    }
+    private void operacionPulsada(String opera){
+       operando1 = Double.valueOf(pantalla.getText());
+        pantalla.setText("0");
+        operacion = opera;
     }
     
     private void boiMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boiMousePressed
@@ -340,11 +351,11 @@ public class VentanaCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_boiMousePressed
 
     private void ceMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ceMousePressed
-        // TODO add your handling code here:
+        pantalla.setText("0");
     }//GEN-LAST:event_ceMousePressed
 
     private void divisionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_divisionMousePressed
-        // TODO add your handling code here:
+        operacionPulsada("/");
     }//GEN-LAST:event_divisionMousePressed
 
     private void eMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eMousePressed
@@ -384,15 +395,15 @@ public class VentanaCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_boton4MousePressed
 
     private void restaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restaMousePressed
-        
+        operacionPulsada("-");
     }//GEN-LAST:event_restaMousePressed
 
     private void sumaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sumaMousePressed
-        // TODO add your handling code here:
+        operacionPulsada("+");
     }//GEN-LAST:event_sumaMousePressed
 
     private void XMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_XMousePressed
-        // TODO add your handling code here:
+        operacionPulsada("*");
     }//GEN-LAST:event_XMousePressed
 
     private void boton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton3MousePressed
@@ -400,7 +411,21 @@ public class VentanaCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_boton3MousePressed
 
     private void igualMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_igualMousePressed
-        // TODO add your handling code here:
+        double operando2 = Double.valueOf(pantalla.getText());
+        if(operacion.equals("+")){
+            operando1 = operando1 + operando2;
+        }
+         if(operacion.equals("-")){
+            operando1 = operando1 - operando2;
+        }
+          if(operacion.equals("/")){
+            operando1 = operando1 / operando2;
+        }
+           if(operacion.equals("*")){
+            operando1 = operando1 * operando2;
+        }
+           pantalla.setText(String.valueOf(operando1));
+           
     }//GEN-LAST:event_igualMousePressed
 
     private void boton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton2MousePressed
